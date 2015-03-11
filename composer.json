@@ -1,19 +1,15 @@
 {
-	"name":"esterm/mpwarfwk",
-	"description":"Standard APP using MPWAR Framework",
-	"license":"Apache-2.0",
-	"keywords": [],
-	"homepage":"https://github.com/esterm/mpwarfwk",
-	"type":"project",
-
-	"require": {
-		"php":">=5.3.2"
-
-	},
-	"minimum-stability":"dev",
-	"autoload": {
-		"psr-0": {
-		"Mpwarfwk\\":"src/"
-		}
-	}
+"name": "esterm/mpwarfwk",
+"description": "MPWAR Framework",
+"license": "Apache-2.0",
+"keywords": [],
+"homepage": "https://github.com/pablor/mpwarfwk",
+"type": "project",
+"require": {
+"php": ">=5.3.2"
+},
+"minimum-stability": "dev",
+"autoload": {
+"psr-0": { "Mpwarfwk\\": "src/" }
+}
 }
