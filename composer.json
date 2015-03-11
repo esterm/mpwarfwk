@@ -1,5 +1,5 @@
 {
-	"name":"esterm/mpwarfwk-standard-edition",
+	"name":"esterm/mpwarfwk",
 	"description":"Standard APP using MPWAR Framework",
 	"license":"Apache-2.0",
 	"keywords": [],
@@ -17,8 +17,8 @@
 	},
 	"minimum-stability":"dev",
 	"autoload": {
-		"psr-4": {
-		"":"src/"
+		"psr-0": {
+		"Mpwarfwk\\":"src/"
 		}
 	}
 }
