@@ -3,15 +3,15 @@
 namespace Mpwarfwk\Component;
 
 class Bootstrap{
-	public function __construct() {
-       echo "In BaseClass constructor\n";
+	public function __construct($dev) {
+       echo "In Bootstrap constructor. Dev mode: ".$dev."<br>";
    }
 
    public function execute(){
    		$bootstrap= new \Mpwarfwk\Component\Routing();
    		$controllername= $bootstrap->getRoute();
-   		$hellocontroller=new $controllername();
-   		$hellocontroller->build();
+   		$controller=new $controllername();
+   		$controller->build();
 
    }
    
