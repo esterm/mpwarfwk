@@ -8,7 +8,10 @@ class Routing{
    }
 
    public function getRoute(){
-   		return "Controller\\Home\\Home";
+   	
+
+   		$routingStr=file_get_contents(__DIR__."/../../../../../../config/routing.json");
+   		return  json_decode($routingStr)->home->path;
 
    }
    
