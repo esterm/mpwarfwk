@@ -77,7 +77,7 @@ class Request
         return $default;
     }
 
-     public static function parseQuery($url) 
+     /*public static function parseQuery($url) 
      {
 
         $params = array();
@@ -90,5 +90,5 @@ class Request
       
         return $params;
     }
-
+*/
 }

@@ -7,7 +7,9 @@
 "homepage": "https://github.com/pablor/mpwarfwk",
 "type": "project",
 "require": {
-"php": ">=5.3.2"
+"php": ">=5.3.2",
+"twig/twig": "1.8.0",
+"smarty/smarty": "3.1.*"
 },
 "minimum-stability": "dev",
 "autoload": {
