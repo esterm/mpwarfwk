@@ -2,17 +2,12 @@
 
 namespace Mpwarfwk\Component;
 
-
-/*
-This class stores the data from the super globals $_GET, $_POST, $_COOKIE, and $_FILES
-*/
-
-class Request {
- 
+class Request 
+{ 
     public $url;
-    public $base;
     public $method;
-    public $query;
+    public $get;
+    public $path;
     public $post;
     public $cookies;
     public $sessions;
@@ -28,7 +23,8 @@ class Request {
             $config = array(
                 'url' => self::getVar('REQUEST_URI', '/'),
                 'method' => self::getMethod(),
-                'query' => $_GET,
+                'get' => $_GET, 
+                'path' => parse_url(self::getVar('REQUEST_URI', '/'))['path'],
                 'post' => $_POST,
                 'cookies' => $_COOKIE,
                 'sessions' => self::getSession(),
@@ -83,9 +79,11 @@ class Request {
 
      public static function parseQuery($url) 
      {
+
         $params = array();
 
         $args = parse_url($url);
+
         if (isset($args['query'])) {
             parse_str($args['query'], $params);
         }
