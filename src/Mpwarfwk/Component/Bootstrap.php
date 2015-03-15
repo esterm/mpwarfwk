@@ -13,11 +13,12 @@ class Bootstrap{
        echo "In Bootstrap constructor. Dev mode: ".$this->_dev."<br>";
    }
 
-   public function execute(){
+   public function getResource($request)
+   {
    		$bootstrap= new \Mpwarfwk\Component\Routing();
-   		$controllername= $bootstrap->getRoute();
-   		$controller=new $controllername();
-   		$controller->build();
+   		$controllername= $bootstrap->getRoute($request);
+      
+   		return $controller=new $controllername();
    }
    
    

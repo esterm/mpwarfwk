@@ -20,7 +20,10 @@ class Request {
     public $files;
 
 
-    public function __construct($config= array()) {
+    public function __construct($config= array()) 
+    {
+        echo "Request created<br>";
+
         if (empty($config)) {
             $config = array(
                 'url' => self::getVar('REQUEST_URI', '/'),
@@ -34,32 +37,35 @@ class Request {
                 );
         }
 
-
        $this->init($config);
     }
 
 
 
-    private function init($properties = array()) {
+    private function init($properties = array())
+    {
         foreach ($properties as $name => $value) {
              $this->$name = $value;
         }
     }
    
 
-    public static function getSession(){
+    public static function getSession()
+    {
         if (isset($_SESSION)){
             return $_SESSION;
         }
     }
 
-     public static function getServer(){
+     public static function getServer()
+     {
         if (isset($_SERVER)){
             return $_SERVER;
         }
     }
 
-    public static function getMethod() {
+    public static function getMethod() 
+    {
        if (isset($_REQUEST['_method'])) {
             return $_REQUEST['_method'];
         }
@@ -67,14 +73,16 @@ class Request {
     }
 
 
-    public static function getVar($var, $default = '') {
+    public static function getVar($var, $default = '') 
+    {
         if (isset($_SERVER[$var])){
             return $_SERVER[$var];
         } 
         return $default;
     }
 
-     public static function parseQuery($url) {
+     public static function parseQuery($url) 
+     {
         $params = array();
 
         $args = parse_url($url);
