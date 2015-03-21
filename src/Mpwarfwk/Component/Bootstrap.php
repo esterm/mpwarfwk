@@ -28,7 +28,7 @@ class Bootstrap{
         $routeClass= $routing->getRoute($this->request)->getRouteClass();
         $routeAction= $routing->getRoute($this->request)->getRouteAction();
         //$routeParams= $routing->getRoute($this->request)->getRouteParams();
-        
+       
         $controller=new $routeClass();
        
 

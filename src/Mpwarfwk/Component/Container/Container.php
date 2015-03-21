@@ -1,9 +1,11 @@
 <?php
 namespace Mpwarfwk\Component\Container;
 
+use Mpwarfwk;
+
+
 class Container
 {
-
 
 	public function __construct()
 	{
@@ -12,31 +14,41 @@ class Container
 
 	public function get($service)
 	{
-		$servicesPath=__DIR__.'../../../config/services.php';
-		$servicesStr= file_get_contents($this->servicesPath);
-		$config=(array) json_decode($servicesStr);
+		$servicesPath=__DIR__."/../../../../../../../config/services.json";
+      	$servicesStr= file_get_contents($servicesPath);
+      	$services=(array) json_decode($servicesStr);
 
 		$arguments=array();
-
 	
-		if(!empty($config[$service]){
 
-		    if (!$config[$service]['arguments']){
+		if(!empty($services[$service])){
 
-			    foreach($config[$service]['arguments'] as $arguments)
-			        $arguments[]=new $arguments() 
+		    if (!empty($services[$service]->arguments)){
+		    	
+			    foreach($services[$service]->arguments as $args){
+			    	if($this->argIsClass($args)){
+			        	$arguments[]=new $args();
+			        }
+			        else{
+			        	$arguments[]=$args;
+			        }
 
-			    
-			    $reflection=new ReflectionClass($config[$service][$controller])
+			     }
+
+			   
+			    $reflection=new \ReflectionClass($services[$service]->class);
 
 				return $reflection->newInstanceArgs($arguments);
 			}
 		}
 
-		throw new excption
+		//throw new excption
 
 	}
 
 
+	private function argIsClass($args){
+		return (count(explode("\\", $args))>1);
+	}
 
 }
