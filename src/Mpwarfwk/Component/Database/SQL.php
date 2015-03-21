@@ -8,7 +8,7 @@ class SQL extends \PDO
     private $host,$port,$dbname,$user,$pass,$charset;
 
 
-    public function __construct($host, $dbname, $user, $pass) {
+    /*public function __construct($host, $dbname, $user, $pass) {
 
        // $db = new \PDO('mysql:host=localhost;dbname=mpwar_test',"root", "strongpassword");
 
@@ -21,7 +21,42 @@ class SQL extends \PDO
         } catch (PDOException $e) {
             die($e->getMessage());
         }
+    }*/
+
+    const HOST="localhost";
+    const DB="my_fwk_db";
+    const USER="myFwkUser";
+    const PASS="myfwkMolon";
+
+    private static $db;
+
+    public static function getDB()
+    {
+        if (!self::$db){
+             $options = array(
+                \PDO::ATTR_PERSISTENT => true,
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
+            );
+
+            try {
+               
+
+                 self::$db = new \PDO('mysql:host='.self::HOST.';dbname='.self::DB,self::USER, self::PASS);
+
+            } catch (PDOException $e) {
+                die($e->getMessage());
+            }
+
+          
+        }
+
+        return self::$db;
     }
+
+
+
+
+
 
     public function selectAll($table, $fetchMode = \PDO::FETCH_ASSOC) {
         $sql = "SELECT * FROM $table;";
