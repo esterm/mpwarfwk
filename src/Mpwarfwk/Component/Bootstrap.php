@@ -2,6 +2,8 @@
 
 namespace Mpwarfwk\Component;
 
+use \Mpwarfwk\Component\Routing\Routing;
+
 class Bootstrap{
 
 	protected $_dev;
@@ -19,25 +21,33 @@ class Bootstrap{
    {
         $this->request=$request;
 
-        $controller=$this->getController();
-        $params=$this->getPathParams();
-        $response=$controller->exec($params);
+       
 
+        $routing= new Routing();
+      
+        $routeClass= $routing->getRoute($this->request)->getRouteClass();
+        $routeAction= $routing->getRoute($this->request)->getRouteAction();
+        //$routeParams= $routing->getRoute($this->request)->getRouteParams();
+        
+        $controller=new $routeClass();
+       
+
+        if ($routeAction!="")
+        {
+          $response=call_user_func_array(array($controller,$routeAction ), $this->request);
+        }
+        else
+        {
+          $response=$controller->mainAction($this->request);
+        }
         return $response;
    }
 
-   private function getController()
-   {
-   		$routing= new \Mpwarfwk\Component\Routing();
-   		$controllername= $routing->getRoute($this->request);
-     
-   		return $controller=new $controllername();
-   }
-
-   private function getPathParams()
+  
+  /* private function getPathParams()
    {
       return explode("/",$this->request->path);
-   }
+   }*/
    
    
 }
