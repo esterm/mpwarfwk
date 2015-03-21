@@ -7,22 +7,6 @@ class SQL extends \PDO
 {
     private $host,$port,$dbname,$user,$pass,$charset;
 
-
-    /*public function __construct($host, $dbname, $user, $pass) {
-
-       // $db = new \PDO('mysql:host=localhost;dbname=mpwar_test',"root", "strongpassword");
-
-        $options = array(
-            \PDO::ATTR_PERSISTENT => true,
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
-        );
-        try {
-            parent::__construct('mysql:host='.$host.';dbname='.$dbname, $user, $pass, $options);
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
-    }*/
-
     const HOST="localhost";
     const DB="my_fwk_db";
     const USER="myFwkUser";

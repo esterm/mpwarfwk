@@ -10,13 +10,14 @@ use Twig;
 class TwigTemplate implements iTemplating{
 	
 	private $view;
-	
-	public function __construct($routetemplates)
+	private $template;
+	private $variables;
+
+	public function __construct()
 	{ 
-		$loader     = new \Twig_Loader_Filesystem( $routetemplates);
-		$twig       = new \Twig_Environment( $loader, array() );
-		
-		$this->view=$twig;
+		$routetemplates=__DIR__."/../../../../../../../src/Templates";;
+		$loader = new \Twig_Loader_Filesystem( $routetemplates);
+		$this->view = new \Twig_Environment( $loader, array() );
 	}
 
 	public function renderTemplate($template,$vars=null)
@@ -30,5 +31,7 @@ class TwigTemplate implements iTemplating{
 			$this->view->assign($key,$value);
 		}
 	}
+
+	
 
 }

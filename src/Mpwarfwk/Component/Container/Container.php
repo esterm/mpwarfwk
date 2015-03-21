@@ -2,7 +2,7 @@
 namespace Mpwarfwk\Component\Container;
 
 use Mpwarfwk;
-
+use Mpwarfwk\Component\Exceptions;
 
 class Container
 {
@@ -22,11 +22,12 @@ class Container
 	
 
 		if(!empty($services[$service])){
-
+		
 		    if (!empty($services[$service]->arguments)){
 		    	
 			    foreach($services[$service]->arguments as $args){
 			    	if($this->argIsClass($args)){
+			    	
 			        	$arguments[]=new $args();
 			        }
 			        else{
@@ -42,7 +43,7 @@ class Container
 			}
 		}
 
-		//throw new excption
+		throw new Exceptions\ClassNotFoundException();
 
 	}
 
