@@ -15,13 +15,14 @@ class SmartyTemplate implements iTemplating
 	public function renderTemplate($template, $variables = null)
 	{
 		return $this->view->fetch($template);
+		//return $this->view->display($template);
 	}
 
 	public function assignVars($variables)
 	{
 		foreach ($variables as $key => $value)
 		{
-		$this->view->assign($key,$value);
+			$this->view->assign($key,$value);
 		}
 	}
 }

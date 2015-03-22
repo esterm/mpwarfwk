@@ -7,7 +7,7 @@ class Route
     private $routeAction;
     private $routeParams;
 
-    public function __construct($routeClass, $routeAction,$routeParams)
+    public function __construct($routeClass, $routeAction,$routeParams=array())
     {
         $this->routeClass  = $routeClass;
         $this->routeAction =  $routeAction;

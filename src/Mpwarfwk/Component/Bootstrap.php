@@ -11,43 +11,31 @@ class Bootstrap{
 
 	public function __construct($dev)
    {
-      //echo "In Bootstrap constructor. Dev mode: ".$this->_dev."<br>";
-
        $this->_dev=$dev;
-
    }
 
    public function handle($request)
    {
         $this->request=$request;
 
-       
-
         $routing= new Routing();
       
-        $routeClass= $routing->getRoute($this->request)->getRouteClass();
-        $routeAction= $routing->getRoute($this->request)->getRouteAction();
-        //$routeParams= $routing->getRoute($this->request)->getRouteParams();
-       
+        $route=$routing->getRoute($this->request);
+        $routeClass= $route->getRouteClass();
+        $routeAction= $route->getRouteAction();
+        $extraParams= $route->getRouteParams();
+
         $controller=new $routeClass();
-       
 
         if ($routeAction!="")
         {
-          $response=call_user_func_array(array($controller,$routeAction ), $this->request);
+          $response=$controller->$routeAction($this->request,$extraParams);
         }
         else
         {
-          $response=$controller->mainAction($this->request);
+          $response=$controller->mainAction($this->request,$extraParams);
         }
         return $response;
    }
-
-  
-  /* private function getPathParams()
-   {
-      return explode("/",$this->request->path);
-   }*/
-   
    
 }

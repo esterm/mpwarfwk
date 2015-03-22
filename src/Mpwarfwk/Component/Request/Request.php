@@ -18,8 +18,6 @@ class Request
 
     public function __construct(Session $session, $config= array()) 
     {
-        echo "Request created<br>";
-
         $this->session = $session;
 
         if (empty($config)) {
@@ -47,13 +45,6 @@ class Request
         }
     }
    
-
-    public static function getSession()
-    {
-        if (isset($_SESSION)){
-            return $_SESSION;
-        }
-    }
 
      public static function getServer()
      {
