@@ -3,6 +3,7 @@ namespace Mpwarfwk\Component\Container;
 
 use Mpwarfwk;
 use Mpwarfwk\Component\Exceptions;
+use Mpwarfwk\Component\Templating\TwigRenderClass;
 
 class Container
 {

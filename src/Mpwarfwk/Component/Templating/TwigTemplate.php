@@ -9,20 +9,18 @@ use Twig;
 
 class TwigTemplate implements iTemplating{
 	
-	private $view;
+	private $renderclass;
 	private $template;
 	private $variables;
 
-	public function __construct()
+	public function __construct(TwigRenderClass $renderclass)
 	{ 
-		$routetemplates=__DIR__."/../../../../../../../src/Templates";;
-		$loader = new \Twig_Loader_Filesystem( $routetemplates);
-		$this->view = new \Twig_Environment( $loader, array() );
+		$this->renderclass=$renderclass;
 	}
 
 	public function renderTemplate($template,$vars=null)
 	{
-		return $this->view->render( $template, $vars);
+		return $this->renderclass->view->render( $template, $vars);
 	}
 
 	public function assignVars($variables)
