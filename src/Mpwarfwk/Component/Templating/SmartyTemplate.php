@@ -7,14 +7,16 @@ use Mpwarfwk\Component\Templating\iTemplating;
 
 class SmartyTemplate implements iTemplating
 {
-	public function __construct()
+	private $smarty;
+
+	public function __construct(\Smarty $smarty)
 	{
-		$this->view = new \Smarty();
+		$this->smarty = $smarty;
 	}
 
 	public function renderTemplate($template, $variables = null)
 	{
-		return $this->view->fetch($template);
+		return $this->smarty->fetch($template);
 		//return $this->view->display($template);
 	}
 
@@ -22,7 +24,7 @@ class SmartyTemplate implements iTemplating
 	{
 		foreach ($variables as $key => $value)
 		{
-			$this->view->assign($key,$value);
+			$this->smarty->assign($key,$value);
 		}
 	}
 }

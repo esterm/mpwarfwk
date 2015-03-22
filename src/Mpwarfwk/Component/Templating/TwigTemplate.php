@@ -26,7 +26,7 @@ class TwigTemplate implements iTemplating{
 	public function assignVars($variables)
 	{
 		foreach($variables as $key->$value){
-			$this->view->assign($key,$value);
+			$this->renderclass->view->assign($key,$value);
 		}
 	}
 
